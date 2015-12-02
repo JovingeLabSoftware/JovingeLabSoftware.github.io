@@ -13,3 +13,13 @@ permalink: pretty
 # just leave someone empty to disable it
 google_analytics: 
 disqus_shortname: 
+
+prose:
+  rooturl: "_posts"
+  metadata:
+    "_posts": |
+      layout: post
+      title: Enter project title
+      abstract: Enter project summary
+      author: John Doe
+      published: true
