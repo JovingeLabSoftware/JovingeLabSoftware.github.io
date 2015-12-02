@@ -1,8 +1,6 @@
 ---
 layout: post
 title: Code Snippet
-date: {}
-published: true
 ---
 
 
