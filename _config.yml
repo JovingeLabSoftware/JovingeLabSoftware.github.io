@@ -1,7 +1,7 @@
 # Site settings
 title: slim
-baseurl: "/slim"
-url: "http://syaning.com"
+baseurl: ""
+url: "http://jovingelabsoftware.github.io"
 
 # Build settings
 markdown: redcarpet
