@@ -15,7 +15,7 @@ google_analytics:
 disqus_shortname: 
 
 prose:
-  rooturl: "_posts"
+  rooturl: ""
   metadata:
     "_posts": |
       layout: post
