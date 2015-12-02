@@ -1,7 +1,7 @@
 # Site settings
-title: Jovinge Lab Bioinformatics
-baseurl: ""
-url: "http://jovingelabsoftware.github.io"
+title: slim
+baseurl: "/slim"
+url: "http://syaning.com"
 
 # Build settings
 markdown: redcarpet
@@ -13,4 +13,3 @@ permalink: pretty
 # just leave someone empty to disable it
 google_analytics: 
 disqus_shortname: 
-
