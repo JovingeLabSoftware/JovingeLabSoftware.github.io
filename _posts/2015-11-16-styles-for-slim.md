@@ -7,7 +7,7 @@ published: true
 
 
 
-(embarassingly) simply clustered code executio:
+(embarassingly) simply clustered code execution:
 
 ```R
 cluster_go <- function() {
