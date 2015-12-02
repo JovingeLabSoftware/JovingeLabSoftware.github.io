@@ -17,7 +17,7 @@ disqus_shortname:
 prose:
   rooturl: ""
   metadata:
-    "_posts": |
+    "./_posts": |
       layout: post
       title: Enter project title
       abstract: Enter project summary
