@@ -2,6 +2,9 @@
 layout: post
 title:  "Code Snippet: Clustering"
 date:   2015-12-02
+tags:
+- R
+- cluster
 ---
 
 Simple example of clustered analysis using snow & MPI.
