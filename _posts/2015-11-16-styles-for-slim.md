@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Styles for slim
+title: Code Snippet
 date: 2015-12-02T00:00:00.000Z
 published: true
 ---
 
 
-**Code snippet:** (embarassingly) simply clustered code executio:
+(embarassingly) simply clustered code executio:
 
 ```R
 cluster_go <- function() {
