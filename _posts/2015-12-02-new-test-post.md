@@ -1,0 +1,15 @@
+---
+published: false
+---
+
+---
+layout: post
+title: A new post
+---
+
+Put your post text here.
+
+
+```R
+print("And some code here")
+```
