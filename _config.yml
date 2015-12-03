@@ -23,7 +23,8 @@ prose:
     _posts:
       - name: "date"
         field:
-          element: "hidden"
+          element: "text"
+          label: "Date"
           value: "CURRENT_DATETIME"
       - name: "category"
         field:
