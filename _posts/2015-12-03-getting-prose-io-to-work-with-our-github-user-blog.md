@@ -11,12 +11,14 @@ title: Getting prose.io to work with our github user blog
 I have had some trouble getting prose.io to play nicely with our user blog, but after studying the [priose.io starter repository](https://github.com/prose/starter) I think I may have it working now (see `_config.yml` below).  In addition to editing `_config.yml` as below, I also added [links.jsonp](https://github.com/JovingeLabSoftware/JovingeLabSoftware.github.io/blob/master/links.jsonp) to root directory of repository.
 
 One trick: to actually publish a new post you need to:
-1. Click new file in the \_posts directory
-2. Edit your post
-3. Click save.  Wait a second for commit to process.
-4. **Refresh the page** to get the "unpublished" button to appear in the formatting toolbar.
-5. Click "unpublished" to toggle it to "published"
-6. Save again
+
+1.  Click new file in the \_posts directory
+2.  Edit your post
+3.  Click save.  Wait a second for commit to process.
+4.  **Refresh the page** to get the "unpublished" button to appear in the formatting toolbar.
+5.  Click "unpublished" to toggle it to "published"
+6.  Save again
+
 
 Here is what the prose section of `_config.yml` looks like currently:
 
