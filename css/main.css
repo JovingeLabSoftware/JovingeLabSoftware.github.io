@@ -35,7 +35,7 @@ blockquote > :last-child { margin-bottom: 0; }
 /** Code formatting */
 pre, code { background-color: #fcfcfc; }
 
-code { padding: 1px 5px; font-size: 8px; font-family: "Courier New", Consolas, monopace, FangSong, STFangsong; }
+code { padding: 1px 5px; font-size: 12px; font-family: "Courier New", Consolas, monopace, FangSong, STFangsong; }
 
 pre { padding: 8px 12px; overflow-x: auto; border-left: 2px solid #e8e8e8; }
 pre > code { border: 0; padding-right: 0; padding-left: 0; }
