@@ -7,7 +7,9 @@ tags:
   - couchbase
   - shell
 published: true
+author: Eric
 ---
+
 
 
 How many times will chown -R bite me in the butt before I learn?

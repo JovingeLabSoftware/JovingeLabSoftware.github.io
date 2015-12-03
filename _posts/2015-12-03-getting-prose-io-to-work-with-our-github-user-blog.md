@@ -6,7 +6,9 @@ tags:
   - "null"
 published: true
 title: Getting prose.io to work with our github user blog
+author: Eric
 ---
+
 
 
 
