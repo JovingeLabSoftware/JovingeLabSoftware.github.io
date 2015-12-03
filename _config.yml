@@ -26,6 +26,11 @@ prose:
           element: "text"
           label: "Date"
           value: "CURRENT_DATETIME"
+      - name: "author"
+        field:
+          element: "text"
+          label: "Author"
+          value: "JLab Skunkworks"
       - name: "category"
         field:
           element: "hidden"
@@ -41,6 +46,7 @@ prose:
           value: ""
       - name: "tags"
         field:
+          alterable: "true"
           element: "multiselect"
           label: "Add Tags"
           placeholder: "Choose Tags"
