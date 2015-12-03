@@ -10,6 +10,7 @@ title: Getting prose.io to work with our github user blog
 
 
 
+
 I have had some trouble getting prose.io to play nicely with our user blog, but after studying the [priose.io starter repository](https://github.com/prose/starter) I think I may have it working now (see `_config.yml` below).  In addition to editing `_config.yml` as below, I also added [links.jsonp](https://github.com/JovingeLabSoftware/JovingeLabSoftware.github.io/blob/master/links.jsonp) to root directory of repository.
 
 One trick: to actually publish a new post you need to:
@@ -32,6 +33,11 @@ prose:
   media: 'media'
   metadata:
     _posts:
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          value: "CURRENT_DATETIME"
       - name: "category"
         field:
           element: "hidden"
