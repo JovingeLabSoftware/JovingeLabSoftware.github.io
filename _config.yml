@@ -13,3 +13,61 @@ permalink: pretty
 # just leave someone empty to disable it
 google_analytics: 
 disqus_shortname: 
+
+prose:
+  rooturl: '_posts'
+  siteurl: 'http://jovingelabsoftware.github.io'
+  relativeLinks: 'http://jovingelabsoftware.github.io/links.jsonp'
+  media: 'media'
+  metadata:
+    _posts:
+      - name: "category"
+        field:
+          element: "hidden"
+          value: "blog"
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: ""
+      - name: "tags"
+        field:
+          element: "multiselect"
+          label: "Add Tags"
+          placeholder: "Choose Tags"
+          options:
+            - name: "R"
+              value: "R"
+            - name: "Couchbase"
+              value: "couchbase"
+            - name: "Node.js"
+              value: "node.js"
+            - name: "Shell"
+              value: "shell"
+            - name: "Code Snippet"
+              value: "code snippet"
+            - name: "Shiny"
+              value: "shiny"
+            - name: "ggplot2"
+              value: "ggplot2"
+            - name: "LINCS"
+              value: "lincs"
+    _posts/static:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "page"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Title"
+          value: ""
+      - name: "permalink"
+        field:
+          element: "text"
+          label: "Permalink"
+          value: ""
