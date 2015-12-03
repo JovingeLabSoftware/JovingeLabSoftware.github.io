@@ -21,6 +21,10 @@ prose:
   media: 'media'
   metadata:
     _posts:
+      - name: "date"
+        field:
+          element: "hidden"
+          value: "CURRENT_DATETIME"
       - name: "category"
         field:
           element: "hidden"
