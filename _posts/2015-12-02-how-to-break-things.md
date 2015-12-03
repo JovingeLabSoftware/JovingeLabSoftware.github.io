@@ -11,19 +11,14 @@ How many times will chown -R bite me in the butt before I learn?
 
 So had some intermittent problems with my node couchbase related unit tests failing intermittently with 
 `Error: open_db_failed: {not_found,no_db_file}`.  Tried restarting the couchbase server and it would not even 
-restart, failing with `timed out`.  Did a `tail /opt/couchbase/var/lib/couchbase/logs/couchdb.log'
+restart.  Did a `tail /opt/couchbase/var/lib/couchbase/logs/couchdb.log`
 
 And got:
 
 ```
 [couchdb:info,2015-12-03T13:23:00.017Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
 [couchdb:info,2015-12-03T13:23:01.018Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:02.019Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:03.020Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:04.021Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:05.022Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:06.023Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
-[couchdb:info,2015-12-03T13:23:07.024Z,couchdb_ns_1@127.0.0.1:<0.190.0>:couch_log:info:41]eacces error opening file "/mnt/lincs/couchbase/data/_users.couch.1" waiting 1000ms to retry
+...
 ```
 
 Oops.  Earlier in the day I had done a chown -R to fix some permissions on files in one of our development directories that I had inadvertently `git clone`'d as root.  Obviously did that 
