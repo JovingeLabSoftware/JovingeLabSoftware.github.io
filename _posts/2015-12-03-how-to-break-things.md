@@ -1,11 +1,14 @@
 ---
 layout: post
-title:  "How to break your server in one easy step"
-date:   2015-12-03
-tags:
-- couchbase
-- shell
+category: blog
+date: "2015-12-03 09:00"
+title: How to break your server in one easy step
+tags: 
+  - couchbase
+  - shell
+published: true
 ---
+
 
 How many times will chown -R bite me in the butt before I learn?
 
@@ -28,5 +31,3 @@ A quick `chown -R couchbase couchbase/*; chgrp -R couchbase couchbase/*; service
 server to start, and now my node couchbase tests were passing again.
 
 Lesson learned.  Until a few days from now when I do it again.
-
-
