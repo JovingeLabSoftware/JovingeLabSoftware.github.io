@@ -11,7 +11,7 @@ title: Getting prose.io to work with our github user blog
 
 
 
-I have had some trouble getting prose.io to play nicely with our user blog, but after studying the [priose.io starter repository](https://github.com/prose/starter) I think I may have it working now (see `_config.yml` below).  In addition to editing `_config.yml` as below, I also added [links.jsonp](https://github.com/JovingeLabSoftware/JovingeLabSoftware.github.io/blob/master/links.jsonp) to root directory of repository.
+I have had some trouble getting prose.io to play nicely with our user blog, but after studying the [priose.io starter repository](https://github.com/prose/starter) I think I may have it working now (see `_config.yml` below).  In addition to editing `_config.yml` as below, I also added [links.jsonp](https://github.com/JovingeLabSoftware/JovingeLabSoftware.github.io/blob/master/links.jsonp) to root directory of repository (the need for which and function of which is not yet clear to me).
 
 One trick: to actually publish a new post you need to:
 
