@@ -11,7 +11,7 @@ title:  Tags
 	    {{ tag[0] }}
 	  {% endfor %}
 	{% endcapture %}
-	{% assign sortedtags = tags | split:' ' | sort_natural %}
+	{% assign sortedtags = tags | split:' ' | sort %}
 	{% for tag in sortedtags %}
 	  <b>{{ tag }}</b>
 	    <ul>
