@@ -4,6 +4,8 @@ title:  Tags
 ---
 
 <h2> Index of posts by tag:</h2>
+<section>
+  
 {% capture tags %}
 	  {% for tag in site.tags %}
 	    {{ tag[0] }}
@@ -20,4 +22,3 @@ title:  Tags
 		      </ul>
 	    {% endfor %}
 </section>
-
