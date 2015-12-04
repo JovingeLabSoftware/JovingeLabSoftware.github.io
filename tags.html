@@ -11,7 +11,8 @@ title:  Tags
 	    {{ tag[0] }}
 	  {% endfor %}
 	{% endcapture %}
-	{% assign sortedtags = tags | downcase | split:' ' | sort %}
+	{% assign sortedtags = tags | split:' ' %}
+	{% sortedtags = sortedtags.sort_by(&:downcase) %} 
 
 	{% for tag in sortedtags %}
 	  <b>{{ tag }}</b>
