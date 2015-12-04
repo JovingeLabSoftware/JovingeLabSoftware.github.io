@@ -41,6 +41,65 @@ code { padding: 1px 5px; font-size: 12px; font-family: "Courier New", Consolas, 
 pre { padding: 8px 12px; overflow-x: auto; border-left: 2px solid #e8e8e8; }
 pre > code { border: 0; padding-right: 0; padding-left: 0; }
 
+/** tags */
+.tags {
+  list-style: none;
+  font: 12px/1.5 "Courier", monospace;
+  margin: 0;
+  overflow: hidden; 
+  padding: 0;
+}
+
+.tags li {
+  float: left; 
+}
+
+.tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 20px;
+  line-height: 21px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 7px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #eee;
+  border-top: 10px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: #999999;
+  color: white;
+}
+
+.tag:hover::after {
+   border-left-color: #999999; 
+}
+
 /** Table */
 table { width: 100%; max-width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
 
