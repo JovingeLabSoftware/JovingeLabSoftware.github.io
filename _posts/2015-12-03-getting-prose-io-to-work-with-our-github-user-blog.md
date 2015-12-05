@@ -25,7 +25,7 @@ One trick: to actually publish a new post you need to:
 5.  Click "unpublished" to toggle it to "published"
 6.  Save again
 
-** Alternative **: If you don't want to do the above steps, you can just enter "published: true" in the Raw Metadata field of the metadata editor (in the sidebar).
+**Alternative**: If you don't want to do the above steps, you can just enter "published: true" in the Raw Metadata field of the metadata editor (in the sidebar).
 
 Here is what the prose section of `_config.yml` looks like currently:
 
