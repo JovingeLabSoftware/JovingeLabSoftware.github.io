@@ -23,8 +23,8 @@ In addition to being a stop-gap solution for case insensitive sort until `sort_n
 
 {% raw %}
 ```Liquid
-{% capture tags %}
 <section>
+	{% capture tags %}
 	  {% for tag in site.tags %}
 	    {{ tag[0] }}
 	  {% endfor %}
