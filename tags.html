@@ -6,19 +6,21 @@ title:  Tags
 <h2> Index of posts by tag:</h2>
 <section>
   
-{% capture tags %}
+	{% capture tags %}
 	  {% for tag in site.tags %}
-	    {{ tag[0] }}
+	    {{tag[0]}}{{','}}
 	  {% endfor %}
 	{% endcapture %}
-	{% assign sortedtags = tags | downcase | split:' ' | sort %}
+	{% assign sortedtags = tags | downcase | split:',' | sort %}
 	{% for tag in sortedtags %}
-	  <b><a name="{{ tag | capitalize }}"> </a>{{ tag | capitalize }}</b>
+      {% assign tag_s = tag | strip %}
+	  <b><a name="{{ tag_s | capitalize }}"> </a>{{ tag_s | capitalize }}</b>
 	    <ul>
 	        {% for post in site.posts %}
 	          {% for t in post.tags %}
+		         {% assign t = t | strip %}
 	             {% capture tdown %}{{ t | downcase }}{% endcapture %}
-	          	 {% if tdown == tag %}
+	          	 {% if tdown == tag_s %}
   			       <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 				 {% endif %}
 	          {% endfor %}
