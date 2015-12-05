@@ -12,6 +12,7 @@ title: Case insensitive sort with Jekyll / Liquid
 ---
 
 
+
 The Liquid template language is fairly restricted in order to ensure security when generating static web pages from templates, making use of predefined filters and the expense of user defined functions.
 
 However, there does not seem to presently be a case-insensitive sort filter (It does seem to be [in the works](https://github.com/Shopify/liquid/pull/554)--but `sort_natural` does not seem to be supported yet in the version of jekyll on github.)
@@ -20,7 +21,7 @@ Here is a way to achieve case insensitive sort by using `downcase` prior to sort
 
 In addition to being a stop-gap solution for case insensitive sort until `sort_natural` goes live, this snippet demonstrates many of the fundamentals of Liquid templating.
 
-```
+```Liquid
 ---
 layout: default
 title:  Tags
