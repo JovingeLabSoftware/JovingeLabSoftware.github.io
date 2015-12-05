@@ -22,14 +22,7 @@ Here is a way to achieve case insensitive sort by using `downcase` prior to sort
 In addition to being a stop-gap solution for case insensitive sort until `sort_natural` goes live, this snippet demonstrates many of the fundamentals of Liquid templating.
 
 ```Liquid
----
-layout: default
-title:  Tags
----
-
-<h2> Index of posts by tag:</h2>
-<section>
-  
+<section>  
 {% capture tags %}
 	  {% for tag in site.tags %}
 	    {{ tag[0] }}
