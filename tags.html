@@ -5,7 +5,6 @@ title:  Tags
 
 <h2> Index of posts by Tag:</h2>
 <section>
-  {{ site.tags }}
 	{% capture tags %}{% for tag in site.tags %}{{tag[0]}}{{','}}{% endfor %}{% endcapture %}
 	{% assign sortedtags = tags | downcase | split:"," | sort %}
 	{% for tag in sortedtags %}
