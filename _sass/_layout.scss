@@ -2,8 +2,13 @@
  * Site header
  */
 .site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     border-bottom: 1px solid $grey-color-light;
     text-align: center;
+    background-color: #f5f5ff;
+    z-index: 100;
     padding: 1rem 0;
 }
 
@@ -19,7 +24,14 @@
     }
 }
 
-
+/*
+ *  With anchor lincs (e.g. for tag index), move anchor down below fixed header
+ */
+a[name] {
+  padding-top: 100px;
+  margin-top: -100px;
+  display: inline-block; /* required for webkit browsers */
+}
 
 /**
  * Page content
@@ -28,7 +40,7 @@
     position: relative;
     max-width: 48rem;
     padding: $spacing-unit ($spacing-unit * 0.75);
-    margin: 0 auto;
+    margin: 50px auto 0px auto;
     box-sizing: border-box;
 }
 
@@ -107,4 +119,74 @@
     h6 {
         font-size: 1rem;
     }
+}
+
+/**
+ * Tags
+ */
+.tags {
+  list-style: none;
+  font: 12px/1.5 "Courier", monospace;
+  margin: 0;
+  overflow: hidden; 
+  padding: 0;
+}
+
+.tags li {
+  float: left; 
+}
+
+.tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 20px;
+  line-height: 21px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 5px 5px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 7px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #eee;
+  border-top: 10px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: #999999;
+  color: white;
+}
+
+.tag:hover::after {
+   border-left-color: #999999; 
+}
+
+.tag a {
+  text-decoration: none;
+  color: #999;
+}
+
+.tag:hover a {
+  color: white;
 }

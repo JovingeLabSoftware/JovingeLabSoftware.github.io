@@ -8,7 +8,7 @@ layout: default
                     {% if page.tags %}
                         <ul class="tags">
 			                          {% for tag in page.tags %}
-						                          <li class="tag">{{ tag }}</li>
+						                          <li class="tag"><a href="{{ site.baseurl }}/tags/#{{ tag | downcase }}">{{tag}}</a></li>
 									                          {% endfor %}
 									                      </ul>
 			                    {% endif %}
