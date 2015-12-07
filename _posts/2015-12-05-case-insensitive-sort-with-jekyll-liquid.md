@@ -23,9 +23,7 @@ Here is a way to achieve case insensitive sort by using `downcase` prior to sort
 Finally, note that we create a comma delimited list out of the tags and then split this list into an array.  Care must be taken to avoid ** extra whitespace **, so I cram the capture statement togeher all on one line.  (Later versions of Jekyll introduce `strip` which is handy for getting rid of leading and trailing whitespace but github uses Jekyll 2.4 as of 12/2015)
 
 In addition to being a stop-gap solution for case insensitive sort until `sort_natural` goes live, this snippet demonstrates many of the fundamentals of Liquid templating.
-
-One final note: ironically, you cannot put liquid code in a Markdown code block with just backticks.  You must also enclose the code block in {% raw %}{% raw %}{% endraw %}{% endraw %}
-
+ 
 {% raw %}
 ```Liquid
 ---
