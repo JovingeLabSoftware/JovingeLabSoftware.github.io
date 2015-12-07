@@ -62,7 +62,7 @@ sudo sed -i 's/us-east-1\.ec2\.//g' /etc/apt/sources.list
 apt-get update
 
 # some R packages need these
-apt-get install libcurl4-openssl-dev libxml2-dev
+apt-get install libcurl4-openssl-dev libxml2-dev -y
 
 # install R from source to get a recent version on our outdated ubuntu distro
 wget http://cran.r-project.org/src/base/R-3/R-3.1.2.tar.gz
