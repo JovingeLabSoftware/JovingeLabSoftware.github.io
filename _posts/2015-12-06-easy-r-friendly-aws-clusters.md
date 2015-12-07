@@ -1,15 +1,16 @@
 ---
 layout: post
 category: blog
-title: Easy R-friendly AWS clusters
+title: "Easy R-friendly AWS clusters"
 date: "Sun Dec 06 2015 22:00:00 GMT-0500 (EST)"
 tags: 
-  - cluster
+  - R
   - shell
-  - r
+  - cluster
 published: true
 author: Andrew
 ---
+
 
 Things inevitably go wrong when you work on big datasets. You often develop and test your code on a small random sample of data points. Sadly, despite your statistically sound efforts, this subset rarely reflects the full heterogeneity present in the data set.
 
@@ -85,7 +86,4 @@ To launch our cluster we issue the following command:
 starcluster start -c rcluster mycluster
 ```
 
-In some future posts we'll discuss parallelizing our `R` code to make use of these networked machines. 
-
-
-
+In some future posts we'll discuss parallelizing our `R` code to make use of these networked machines.
