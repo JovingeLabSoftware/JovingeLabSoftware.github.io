@@ -4,6 +4,7 @@ category: blog
 date: "2015-12-08 14:37 -0500"
 author: JLab Skunkworks
 tags: 
+  - code snippet
   - R
   - Cluster
 published: true
