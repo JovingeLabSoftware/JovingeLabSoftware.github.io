@@ -24,6 +24,7 @@ Initialize settings:
 I could not get this to work without -u -p, even though the password has not been set yet.
 
 Then to start the cluster:
+
 ```bash
 /opt/couchbase/bin/couchbase-cli cluster-init -c localhost:8091 \
 	--cluster-username=Administrator \
@@ -33,6 +34,7 @@ Then to start the cluster:
 	--cluster-index-ramsize=2000 \
 	--services=data,index,query
 ```
+
 Instead of starting a new cluster with cluster-init, to add to an existing cluster I believe you would do this (you can also use server-add and then rebalance as separate steps):
 
 ```bash
