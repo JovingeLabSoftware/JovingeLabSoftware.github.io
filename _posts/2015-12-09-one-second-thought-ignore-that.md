@@ -8,8 +8,9 @@ tags:
   - shell
   - git
 published: true
-title: "One second thought, ignore that"
+title: "On second thought, ignore that"
 ---
+
 
 
 I have often struggled with getting git to ignore previously tracked stuff, particularly directories.  Here is how to do it, in this case removing and ignoring previously tracked .c9 config directory (assuming you have already added `.c9` to `.gitignore`.
