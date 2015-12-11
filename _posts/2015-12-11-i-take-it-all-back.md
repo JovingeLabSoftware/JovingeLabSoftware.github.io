@@ -7,9 +7,10 @@ tags:
   - code snippet
   - shell
   - git
-published: false
+published: true
 title: I take it all back
 ---
+
 
 A friend of mine (ahem) once committed his or her AWS keys to a github repository.  At least it wasn't in a blog post!  Oh wait, it was.
 
