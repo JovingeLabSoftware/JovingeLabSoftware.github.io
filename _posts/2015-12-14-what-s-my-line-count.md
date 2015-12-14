@@ -14,7 +14,7 @@ title: "What's my line (count)?"
 Ever wonder how many lines of code are in your project?  You can get an idea with the tool `cloc` (`sudo apt-get install cloc`).  Unfortunately, `cloc` doesn't know about R.  So we need to get a copy of its language defintion file and add R to it:
 
 ```
-cloc --read-lang-def ~/cloc_lang_def.txt
+$ cloc --read-lang-def ~/cloc_lang_def.txt
 ```
 
 Then add this stanza to it:
@@ -26,7 +26,7 @@ R
     extension R
     3rd_gen_scale 2.00
 ```
-(The 3rd_gen_scale is arbitrary). Now you can do this:
+(The `3rd_gen_scale` value is arbitrary). Now you can do this:
 
 ```
 $ cloc $(git ls-files) --read-lang-def ~/cloc_lang_def.txt | more
