@@ -13,13 +13,13 @@ title: "What's my line (count)?"
 
 Ever wonder how many lines of code are in your project?  You can get an idea with the tool `cloc` (`sudo apt-get install cloc`).  Unfortunately, `cloc` doesn't know about R.  So we need to get a copy of its language defintion file and add R to it:
 
-```Shell
+```
 cloc --read-lang-def ~/cloc_lang_def.txt
 ```
 
 Then add this stanza to it:
 
-```Shell
+```
 R
     filter remove_matches ^\s*#
     extension r
@@ -28,7 +28,7 @@ R
 ```
 (The 3rd_gen_scale is arbitrary). Now you can do this:
 
-```Shell
+```
 $ cloc $(git ls-files) --read-lang-def ~/cloc_lang_def.txt | more
      160 text files.
      132 unique files.                                          
