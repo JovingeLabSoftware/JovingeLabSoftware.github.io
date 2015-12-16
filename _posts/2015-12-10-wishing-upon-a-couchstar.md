@@ -14,6 +14,7 @@ title: Wishing upon a couchstar
 
 
 
+
 For our next trick, we will put together everything we have learned in prior posts and create a starcluster based couchbase server backed by EFS.  (Is EFS a good choice?  Arguments for not using shared drive with couchbase: failover, network latency.  Arguments for using EFS: it is backed up for me so I do not need redundant drives, Amazon says it is fast.  We'll see).
 
 1. Create an new EC2 instance based on a starcluster AMI.  I went with `ami-17331927`. 
@@ -99,6 +100,7 @@ TO_PORT = 8092
 
 8. Add the cluster nodes to the security group to which EFS belongs.  To mount the EFS, you must be in the security group to which the EFS volume is assigned.  StarCluster creates a new security group when the cluster is spawned, and destroys it when it is terminated.  So we need to add the EFS security group to each node at boot.  This is accomplished with the following bash script (save this to `/path/to/startup.sh` as noted in USERDATA_SCRIPTS variable in config in step 7 above, and `chmod 655` for good measure):  (**OF COURSE**  I changed personal details below).
 
+```
 #!/bin/bash
 
 # tweak these add needed
