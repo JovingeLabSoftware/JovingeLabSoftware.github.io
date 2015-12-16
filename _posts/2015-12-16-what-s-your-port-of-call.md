@@ -60,8 +60,8 @@ If you want further flexibility and want to be other to run your app on some arb
 
 ```
 var config = require('../config');
-if(process.env.COUCHLINCS_PORT) {
-   port = process.env.COUCHLINCS_PORT;
+if(process.env.MYPORT) {
+   port = process.env.MYPORT;
 } else {
    var port = config.port; 
 }
