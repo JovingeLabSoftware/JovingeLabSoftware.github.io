@@ -148,4 +148,4 @@ starcluster start couchstar
 
 10. Now we need to initialize couchbase.  I am working on a scripted solution, but in the mean time you can point your browser to 999.99.999.99:8091 (modify with the IP address of the master node) to init the master node of couchcluster, and then do the same for each node (adding each one to the master rather than starting them new servers). 
 
-11. Almost works...this does not quite work when a software client tries to connect from the outside world.  I think we need to use FDQN for our couchbase nodes which will then dynamically handle using private vs. public ips.
+11. Almost works...the last step is to open port 11211 in addition to 8091 and 8092, as this is required for client interface (oddly enough, since one would think the REST, API, and N1QL ports would be enough). To summarize, you need ports 8091 (Web Admin), 8092 (REST API), 8093 (N1QL), 4369 (Erlang Port Mapper), and 11211 ("Client Interface") open to interact with your CouchBase cluster from another machine.
