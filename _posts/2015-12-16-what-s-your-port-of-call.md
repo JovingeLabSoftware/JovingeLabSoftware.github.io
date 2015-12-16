@@ -52,7 +52,8 @@ process.env.LINCS_DEVEL = 'true';
 
 Conveniently, the scope of process.env is limited to that process, it does not touch your global (or even current terminal session) env settings.
 
-Via environment variables
+### Via environment variables
+
 If you want further flexibility and want to be other to run your app on some arbitrary port to avoid conflicts with other team members, you can always do `export MYPORT=8881` at the command line and then grab that value in your app (the example below combines this approach with the above config.js approach for maximum flexiblity):
 
 **/project_root/bin/app.js**
