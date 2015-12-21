@@ -27,3 +27,5 @@ Speaking of rebuilding your index, you must first drop your index prior the crea
 DROP INDEX LINCS.cell_pert
 ```
 
+Here is another performance pearl: be careful with values for boolean fields.  `AND metadata.is_gold = true` is very fast, where as `AND metadata.is_gold = 'true'` takes a long time.
+
