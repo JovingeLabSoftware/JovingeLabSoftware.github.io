@@ -11,7 +11,9 @@ title: Walking on cloud 9 behind a firewall
 ---
 
 
+
 Cloud9 is great.  But what if your code is behind a firewall?  You are in luck.  You can download the Cloud9 IDE and run it locally.
+
 
 ```
 git clone git://github.com/c9/core.git c9sdk
@@ -100,5 +102,3 @@ fi
 ```
 
 Now what would be REALLY cool is to be able to install this globally and have multiple user sessions.  Installing the Cloud9 SDK globally gets dicey due to file permissions.  There is a git project to provide a workspace management UI akin to the officle version of Cloud9 at c9.io (https://github.com/AVGP/cloud9hub), though I am not sure if it works with the latest version of Cloud9 or not.
-
-
