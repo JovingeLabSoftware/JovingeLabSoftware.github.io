@@ -30,7 +30,7 @@ But if you want to access it from a different machine (also behind the same fire
 
 You can also specify the port you want to use, as well as the working directory.  Also wouldn't it be nice to use `forever` to start this so you don't need to stary it up by hand?  Hmmm...
 
-Why don't we create a little start up script to make this easier.  The following defaults to your currently logged in username and current working directory.  If not specified, and available port will be chosen at random in the range 8100-8900.
+Why don't we create a little start up script to make this easier.  The following defaults to your currently logged in username and current working directory.  If not specified, an available port will be chosen at random in the range 8100-8900.
 
 The `-f` option requires that `forever` be installed, as in `sudo npm install -g forever`
 
