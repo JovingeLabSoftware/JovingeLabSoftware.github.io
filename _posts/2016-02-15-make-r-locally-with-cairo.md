@@ -7,7 +7,7 @@ tags:
   - R
   - shell
 published: true
-title: "Make R locally, with cairo"
+title: "Install R, pixman, and cairo locally"
 ---
 
 Need to install R locally, and want to be able to render graphics to file without X11 resources available?
