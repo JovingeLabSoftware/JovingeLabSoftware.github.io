@@ -11,7 +11,6 @@ title: "Bash: get a bunch of files"
 
 Here is one way to get a bunch files with a for loop
 
-> fetchall.sh
 ```
 #!/usr/bin/bash
 volumes=(1 2 3 4 5 6 7)
@@ -21,7 +20,6 @@ do
   wget ftp://ftp.broad.mit.edu/pub/cmap/cmap_build02.volume${i}of7.zip
   unzip *.zip
 done
-
 ```
 
 If this is going to take a while and you don't want to wait, you could use `tmux` to start in a backgroundable session, or just use nohup:
