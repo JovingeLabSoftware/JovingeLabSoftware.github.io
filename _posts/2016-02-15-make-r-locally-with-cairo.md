@@ -10,7 +10,7 @@ published: true
 title: "Make R locally, with cairo"
 ---
 
-Need to install R locally, and want to be able to render graphics to file without X11 resources installed?
+Need to install R locally, and want to be able to render graphics to file without X11 resources available?
 
 Here we install pixman, cairo, and then R...
 
