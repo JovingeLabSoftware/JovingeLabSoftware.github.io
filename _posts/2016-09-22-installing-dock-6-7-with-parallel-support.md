@@ -10,8 +10,9 @@ Here is how I installed Dock 6.7 in a local directory on our HPC cluster. I alre
 
 ## Obtain source code
 
-Step 1. [Request License](http://dock.compbio.ucsf.edu/Online_Licensing/dock_license_application.html)
-Step 2. Download and untar
+- Step 1. [Request License](http://dock.compbio.ucsf.edu/Online_Licensing/dock_license_application.html)
+- Step 2. Download and untar
+
 
 ```
 wget https://dock.compbio.ucsf.edu/dock.6.7_source.tar.gz --no-check-certificate
