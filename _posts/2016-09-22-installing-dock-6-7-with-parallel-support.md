@@ -3,9 +3,8 @@ layout: post
 category: blog
 date: '2016-09-22 11:32 -0400'
 author: JLab Skunkworks
-published: false
+published: true
 title: Installing Dock 6.7 with parallel support
-tags: ''
 ---
 Here is how I installed Dock 6.7 in a local directory on our HPC cluster. I already install MPICH locally, and that is needed to support parallel processing in Dock.  [This blog post](http://jovingelabsoftware.github.io/blog/2016/02/15/installing-openmpi-and-rmpi-from-source/) describes installing openMPI, and installing MPICH should install in a similar fashion.  Note that Dock 6 does not support openMPI out of the box (though [they claim](http://dock.compbio.ucsf.edu/DOCK_6/dock6_manual.htm) it should be easy to adapt the build to use openmpi instead of MPICH).
 
@@ -32,4 +31,3 @@ Then make it executable
 ```
 chmod 754 yacc
 ```
-
