@@ -12,6 +12,7 @@ Here is how I installed Dock 6.7 in a local directory on our HPC cluster. I alre
 
 Step 1. [Request License](http://dock.compbio.ucsf.edu/Online_Licensing/dock_license_application.html)
 Step 2. Download and untar
+
 ```
 wget https://dock.compbio.ucsf.edu/dock.6.7_source.tar.gz --no-check-certificate
 tar -zxvf dock.6.7._source.tar.gz
@@ -31,3 +32,22 @@ Then make it executable
 ```
 chmod 754 yacc
 ```
+
+## Build
+
+Now timet o build
+
+```
+make
+make install
+make test
+```
+
+Build completed without errors, however I did see some errors on make test.  Most worrisome is that the `dock` executable could not be found.  After some poking around it turns out that when building with cluster support, the exectuable is named `dock.mpi`.  So let's create a symlink:
+
+```
+cd ../bin
+ln -s dock6.mpi dock6
+```
+
+Now most of the tests pass, though there are still some `possible FAILURE`s.  I am not sure how significant they are, only time will tell.
