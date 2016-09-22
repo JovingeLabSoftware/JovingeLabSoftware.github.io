@@ -51,7 +51,7 @@ cd ../bin
 ln -s dock6.mpi dock6
 ```
 
-Now most of the tests pass, though there are still some `possible FAILURE`s.  I am not sure how significant they are, only time will tell.
+Now most of the tests pass, though there are still some `possible FAILURE`s.  I am not sure how significant they are, only time will tell.  Notably, though, the ligand sampling tutorial ran fine.
 
 For future reference, something like this should be added to .bashrc to tell `dock` (and the rest of your ecosystem) where the MPICH executables are:
 
