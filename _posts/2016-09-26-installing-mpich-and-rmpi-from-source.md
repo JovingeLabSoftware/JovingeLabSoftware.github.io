@@ -3,7 +3,7 @@ layout: post
 category: blog
 date: '2016-09-26 15:54 -0400'
 author: JLab Skunkworks
-published: false
+published: true
 title: Installing MPICH and Rmpi from source
 ---
 
