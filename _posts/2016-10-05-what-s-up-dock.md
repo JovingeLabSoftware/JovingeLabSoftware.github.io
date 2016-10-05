@@ -54,6 +54,7 @@ if __name__ == "__main__":
 
 The code including our jlab library is [available on github](https://github.com/JovingeLabSoftware/synergy), but here is the guts of it:
 
+**`jlpdb.py`**
 ```python
 import os
 from Bio import PDB
