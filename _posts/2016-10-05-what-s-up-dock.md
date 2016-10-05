@@ -112,4 +112,31 @@ class _selectChains(PDB.Select):
 
 ```
 
+The resulting protein structure is probably not guaranteed to be ready for docking.  I am not sure the structures from PDB always have all the hydrogens added, and there may be incomplete side chains.  (Maybe these are not valid concerns, but for now let's play it safe).  Chimera includes a nice suite of tools called DockPrep, and you can run them from their GUI.  But we are aiming for a headless/unsupervised pipeline here.  Fortunately, you can also script most (all?) of Chimera's functionality with python.  It actually is very simple.  The following preps the protein model, and then also calculates the accessible surface (which if I understand correctly is a smoothed van der Waals surface which excludes tight crevices).
+
+**`dockprep.py`**
+```python
+import chimera
+import sys
+from DockPrep import prep
+from DockPrep import AddH
+
+# ref: http://mailman.docking.org/pipermail/dock-fans/2007-May/001043.html
+# note Hydrogen addition algorithm specified
+
+models = chimera.openModels.list(modelTypes=[chimera.Molecule])
+prep(models, addHFunc=AddH.hbondAddHydrogens)
+print str(models[0].name)
+
+root = models[0].name.replace(".pdb", "")
+from WriteMol2 import writeMol2
+writeMol2(models, root + "_prepped.mol2")
+
+# ref: http://plato.cgl.ucsf.edu/pipermail/chimera-users/2011-March/006134.html
+chimera.runCommand("surf")
+surf = chimera.openModels.list(modelTypes=[chimera.MSMSModel])[0]
+from WriteDMS import writeDMS
+writeDMS(surf, root + ".dms")
+```
+
 
