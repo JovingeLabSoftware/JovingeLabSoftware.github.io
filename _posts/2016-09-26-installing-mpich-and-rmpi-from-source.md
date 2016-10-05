@@ -7,6 +7,9 @@ published: true
 title: Installing MPICH and Rmpi from source
 ---
 
+**NOTE: As of now, I have not been able to get this to work.  Using mpiexec leads to duplication of the same task accross all nodes in the cluster.  If I do not use mpiexec I get errors along the lines of `match_arg (utils/args/args.c:159): unrecognized argument pmi_args`.  So I have gone back to using SOCK based clusters for now. **
+
+
 If you are working on a cluster and need to install MPICH and Rmpi from source, there are a couple tricks. This is very similar to [installing OpenMPI and Rmpi from source](http://jovingelabsoftware.github.io/blog/2016/02/15/installing-openmpi-and-rmpi-from-source/), but adapted for MPICH.  OpenMPI was giving me headaches on our HPC cluster, so I am moving to MPICH.
 
 Installing MPICH is pretty straight forward:
@@ -51,4 +54,3 @@ bs.mean <- function(v) {
 clusterSetupRNG(cl)
 clusterCall(cl, bs.mean, x)
 ```
-
