@@ -24,6 +24,8 @@ Here are the steps we followed to setup our docking pipeline, with what are hope
 
 Phew!  Now you are ready to rock.  I mean dock.  First let's prepare our protein (the "receptor").  Many of the structures available from [PDB](http://www.rcsb.org/) are dimers or oligomers and also may contain solvent molecules and even ligands.  So we need to clean them up and extract a single chain.  (You may actually not want a single chain.  Perhaps you are interested in docking between subunits, for example.  In that case you would need to adapt the strategy below.  Of course, the larger the protein assembly you are working with, the longer some of the downstream steps will take computationally).
 
+This script (which requires the little jlab library below) will extract a single chain (indicated by chain letter) and discard everything else including solvent, ligands, etc.
+
 **`pdbsplit.py`**
 ```python
 import sys
@@ -47,6 +49,65 @@ if __name__ == "__main__":
         splitter = jlpdb.Splitter()
 
     splitter.make_pdb(sys.argv[1], sys.argv[2])
+
+```
+
+The code including our jlab library is [available on github](https://github.com/JovingeLabSoftware/synergy), but here is the guts of it:
+
+```python
+import os
+from Bio import PDB
+import re
+
+
+"""
+Adapted from David Cain's answer here:
+http://stackoverflow.com/questions/11685716/how-to-extract-chains-from-a-pdb-file
+"""
+
+class Splitter:
+    def __init__(self, out_dir=None):
+        self.parser = PDB.PDBParser()
+        self.writer = PDB.PDBIO()
+        if out_dir is None:
+            out_dir = os.getcwd()
+        self.out_dir = out_dir
+
+    def make_pdb(self, pdb_path, chain_letter, overwrite=False, struct=None):
+        chain_letter = chain_letter.upper()
+        base = pdb_path.replace("\\\\", "/").split("/").pop()
+
+        # Input/output files
+        (pdb_dir, pdb_fn) = os.path.split(pdb_path)
+        pdb_id = pdb_fn[3:7]
+        out_name = base.replace(".pdb", "_" + chain_letter + ".pdb")
+        out_path = os.path.join(self.out_dir, out_name)
+
+        # Skip PDB generation if the file already exists
+        if (not overwrite) and (os.path.isfile(out_path)):
+            print("Chain %s of '%s' already extracted to '%s'." %
+                  (", ".join(chain_letter), pdb_id, out_name))
+            return out_path
+
+        # Get structure, write new file with only given chains
+        if struct is None:
+            struct = self.parser.get_structure(pdb_id, pdb_path)
+        self.writer.set_structure(struct)
+        self.writer.save(out_path, select=_selectChains(chain_letter))
+
+        return out_path
+
+
+class _selectChains(PDB.Select):
+    def __init__(self, chain_letter):
+        self.chain_letter = chain_letter
+
+    def accept_chain(self, chain):
+        return (chain.get_id() in self.chain_letter)
+
+    def accept_residue(self, residue):
+        # reject all non protein residues
+        return  residue.get_id()[0] == ' '
 
 ```
 
