@@ -19,7 +19,7 @@ Here are the steps we followed to setup our docking pipeline, with what are hope
 
 4. Install chimera (headless version, which is listed under ["daily builds"](https://www.cgl.ucsf.edu/chimera/download.html#daily), or try the direct link [here](https://www.cgl.ucsf.edu/chimera/cgi-bin/secure/chimera-get.py?file=alpha/chimera-alpha-linux_x86_64_osmesa.bin)).  This is a user friendly installer that will let you specify the installation directory AND create symlinks somewhere in your path.  So it works great whether or not you have root access on your machine.
 
-5. [Install DOCK 6.7](http://jovingelabsoftware.github.io/blog/2016/09/22/installing-dock-6-7-with-parallel-support/).  The following assumes that the dock applications are in your path.  To avoid future issues with installing new versions, I like to create symlinks to the executables (in particular, sphgen, showshphere, and dock6) somewhere on your PATH (e.g. /usr/local/bin or, without root access, ~/local/bin, assuming you have created those folders in your home directory and added ~/local/bin to your PATH.)
+5. [Install DOCK 6.7](http://jovingelabsoftware.github.io/blog/2016/09/22/installing-dock-6-7-with-parallel-support/).  The following assumes that the dock applications are in your path.  To avoid future issues with installing new versions, I like to create symlinks to the executables (in particular, sphgen, showshphere, showbox, and dock6) somewhere on your PATH (e.g. /usr/local/bin or, without root access, ~/local/bin, assuming you have created those folders in your home directory and added ~/local/bin to your PATH.)
 
 
 Phew!  Now you are ready to rock.  I mean dock.  The docking procedure has the following steps:
@@ -30,6 +30,8 @@ Phew!  Now you are ready to rock.  I mean dock.  The docking procedure has the f
 4. Generate a bounding box to limit the search to the region of the largest sphere cluster
 5. Generate the search grid
 6. Dock.
+
+### Clean up protein structure
 
 First let's prepare our protein (the "receptor").  Many of the structures available from [PDB](http://www.rcsb.org/) are dimers or oligomers and also may contain solvent molecules and even ligands.  So we need to clean them up and extract a single chain.  (You may actually not want a single chain.  Perhaps you are interested in docking between subunits, for example.  In that case you would need to adapt the strategy below.  Of course, the larger the protein assembly you are working with, the longer some of the downstream steps will take computationally).
 
@@ -121,6 +123,8 @@ class _selectChains(PDB.Select):
 
 ```
 
+### Dockprep
+
 The resulting protein structure is probably not guaranteed to be ready for docking.  I am not sure the structures from PDB always have all the hydrogens added, and there may be incomplete side chains.  (Maybe these are not valid concerns, but for now let's play it safe).  Chimera includes a nice suite of tools called DockPrep, and you can run them from their GUI.  But we are aiming for a headless/unsupervised pipeline here.  Fortunately, you can also script most (all?) of Chimera's functionality with python.  It actually is very simple.  The following preps the protein model, and then also calculates the accessible surface (which if I understand correctly is a smoothed van der Waals surface which excludes tight crevices).
 
 **`dockprep.py`**
@@ -150,6 +154,8 @@ surf = chimera.openModels.list(modelTypes=[chimera.MSMSModel])[0]
 from WriteDMS import writeDMS
 writeDMS(surf, d + root + ".dms")
 ```
+
+### Generate spheres
 
 The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH, to run in non-interactive mode (this file must be called INSPH, and must be in your current working directory.  There is not option to use a different filename at this time).  The name of the `dms` file (`out/mol.dms`) will need to be adjusted to match the file output by `dockprep.py` above.
 
@@ -181,6 +187,17 @@ sed -n '/cluster     2/!p;//q' out/4Z3K_A.sph > temp.sph
 mv temp.sh out/4Z3K_A.sph
 ```
 
+### Generate bounding box
+
+To generate the boundnig box surrounding our spheres/binding pocket, we use the `showbox` utility that comes with dock.  As with the other utilities, we need an input file to run non-interactively.  These are, in order, the answers to the prompts that [showbox would ask](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/grid_generation/generating_grid.html).
+
+**`box.in`**
+```
+5
+./out/4Z3K_A.sph
+1
+./out/rec_box.pdb
+```
 
 
 
