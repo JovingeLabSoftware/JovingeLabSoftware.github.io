@@ -142,7 +142,7 @@ from WriteDMS import writeDMS
 writeDMS(surf, d + root + ".dms")
 ```
 
-The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH, to run in non-interactive mode (this file must be called INSPH, and must be in your current working directory.  There is not option to use a different filename at this time).
+The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH, to run in non-interactive mode (this file must be called INSPH, and must be in your current working directory.  There is not option to use a different filename at this time).  The name of the `dms` file (`out/mol.dms`) will need to be adjusted to match the file output by `dockprep.py` above.
 
 **`INSPH`**
 ```
@@ -156,6 +156,22 @@ X
 ```
 
 Then the spheres can be generated with `sphgen`.  If you want to visualize the spheres, you can convert the sphere file to pdb with the `showsphere` utility that comes with Dock.  Again, to run in non-interactive mode an input file is required:
+
+**`sphgen_cluster.in`**
+```
+out/4Z3K_A.sph
+1
+N
+selected_cluster.pdb
+```
+
+Next, we want to trim our sphere file so it only includes the largest cluster.  This will results in a small search grid and faster docking.  You don't have to do this if you are concerned your actual binding site is in some other cluster but it seems like A Good Idea (tm).  We can use sed to accomplish this, along these lines:
+
+```
+sed -n '/cluster     2/!p;//q' out/4Z3K_A.sph > temp.sph
+```
+
+
 
 
 
