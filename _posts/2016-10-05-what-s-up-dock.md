@@ -118,25 +118,42 @@ The resulting protein structure is probably not guaranteed to be ready for docki
 ```python
 import chimera
 import sys
+import re
 from DockPrep import prep
 from DockPrep import AddH
+from WriteMol2 import writeMol2
 
 # ref: http://mailman.docking.org/pipermail/dock-fans/2007-May/001043.html
-# note Hydrogen addition algorithm specified
-
 models = chimera.openModels.list(modelTypes=[chimera.Molecule])
 prep(models, addHFunc=AddH.hbondAddHydrogens)
-print str(models[0].name)
 
 root = models[0].name.replace(".pdb", "")
-from WriteMol2 import writeMol2
-writeMol2(models, root + "_prepped.mol2")
+if len(sys.argv) == 2:
+     d = re.sub("/$", "", sys.argv[1]) + "/"
+else:
+     d = ""
+
+writeMol2(models, d + root + "_prepped.mol2")
 
 # ref: http://plato.cgl.ucsf.edu/pipermail/chimera-users/2011-March/006134.html
 chimera.runCommand("surf")
 surf = chimera.openModels.list(modelTypes=[chimera.MSMSModel])[0]
 from WriteDMS import writeDMS
-writeDMS(surf, root + ".dms")
+writeDMS(surf, d + root + ".dms")
 ```
+
+The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH.
+
+**`INSPH`**
+```
+out/mol.dms
+R
+X
+0.0
+5.0
+1.4
+
+```
+
 
 
