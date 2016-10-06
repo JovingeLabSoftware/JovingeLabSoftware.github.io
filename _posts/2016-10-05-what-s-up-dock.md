@@ -169,6 +169,7 @@ Next, we want to trim our sphere file so it only includes the largest cluster.  
 
 ```
 sed -n '/cluster     2/!p;//q' out/4Z3K_A.sph > temp.sph
+mv temp.sh out/4Z3K_A.sph
 ```
 
 
