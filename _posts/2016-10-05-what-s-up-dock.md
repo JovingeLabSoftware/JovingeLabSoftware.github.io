@@ -22,7 +22,16 @@ Here are the steps we followed to setup our docking pipeline, with what are hope
 5. [Install DOCK 6.7](http://jovingelabsoftware.github.io/blog/2016/09/22/installing-dock-6-7-with-parallel-support/).  The following assumes that the dock applications are in your path.  To avoid future issues with installing new versions, I like to create symlinks to the executables (in particular, sphgen, showshphere, and dock6) somewhere on your PATH (e.g. /usr/local/bin or, without root access, ~/local/bin, assuming you have created those folders in your home directory and added ~/local/bin to your PATH.)
 
 
-Phew!  Now you are ready to rock.  I mean dock.  First let's prepare our protein (the "receptor").  Many of the structures available from [PDB](http://www.rcsb.org/) are dimers or oligomers and also may contain solvent molecules and even ligands.  So we need to clean them up and extract a single chain.  (You may actually not want a single chain.  Perhaps you are interested in docking between subunits, for example.  In that case you would need to adapt the strategy below.  Of course, the larger the protein assembly you are working with, the longer some of the downstream steps will take computationally).
+Phew!  Now you are ready to rock.  I mean dock.  The docking procedure has the following steps:
+
+1. Clean up your protein structure to remove ligands, solvents and select a single member of oligomers.
+2. Run chimera's dockprep to add hydrogens if needed, fix incomplete residues, etc.
+3. Generate a sphere file to identify the binding pocket
+4. Generate a bounding box to limit the search to the region of the largest sphere cluster
+5. Generate the search grid
+6. Dock.
+
+First let's prepare our protein (the "receptor").  Many of the structures available from [PDB](http://www.rcsb.org/) are dimers or oligomers and also may contain solvent molecules and even ligands.  So we need to clean them up and extract a single chain.  (You may actually not want a single chain.  Perhaps you are interested in docking between subunits, for example.  In that case you would need to adapt the strategy below.  Of course, the larger the protein assembly you are working with, the longer some of the downstream steps will take computationally).
 
 This script (which requires the little jlab library below) will extract a single chain (indicated by chain letter) and discard everything else including solvent, ligands, etc.
 
@@ -165,7 +174,7 @@ N
 selected_cluster.pdb
 ```
 
-Next, we want to trim our sphere file so it only includes the largest cluster.  This will results in a small search grid and faster docking.  You don't have to do this if you are concerned your actual binding site is in some other cluster but it seems like A Good Idea (tm).  We can use sed to accomplish this, along these lines:
+Next, we want to trim our sphere file so it only includes the largest cluster.  This will results in a smaller search box and faster docking.  You don't have to do this if you are concerned your actual binding site is in some other cluster but it seems like A Good Idea (tm).  We can use sed to accomplish this, along these lines:
 
 ```
 sed -n '/cluster     2/!p;//q' out/4Z3K_A.sph > temp.sph
