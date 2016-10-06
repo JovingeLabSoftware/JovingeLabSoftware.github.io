@@ -200,6 +200,9 @@ Y
 ./out/rec_box.pdb
 ```
 
+If you open up the resulting prepped `.mol2` file and the `.pdb` files created by `showcluster` and `showbox` you can see how things are set up for docking (you will need the change the atom display mode to spheres our your spheres will display as little dots).
+
+![dockprep.png]({{site.baseurl}}/media/dockprep.png)
 
 
 
