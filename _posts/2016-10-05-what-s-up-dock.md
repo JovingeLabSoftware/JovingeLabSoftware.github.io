@@ -19,7 +19,7 @@ Here are the steps we followed to setup our docking pipeline, with what are hope
 
 4. Install chimera (headless version, which is listed under ["daily builds"](https://www.cgl.ucsf.edu/chimera/download.html#daily), or try the direct link [here](https://www.cgl.ucsf.edu/chimera/cgi-bin/secure/chimera-get.py?file=alpha/chimera-alpha-linux_x86_64_osmesa.bin)).  This is a user friendly installer that will let you specify the installation directory AND create symlinks somewhere in your path.  So it works great whether or not you have root access on your machine.
 
-5. [Install DOCK 6.7](http://jovingelabsoftware.github.io/blog/2016/09/22/installing-dock-6-7-with-parallel-support/)
+5. [Install DOCK 6.7](http://jovingelabsoftware.github.io/blog/2016/09/22/installing-dock-6-7-with-parallel-support/).  The following assumes that the dock applications are in your path.  To avoid future issues with installing new versions, I like to create symlinks to the executables (in particular, sphgen, showshphere, and dock6) somewhere on your PATH (e.g. /usr/local/bin or, without root access, ~/local/bin, assuming you have created those folders in your home directory and added ~/local/bin to your PATH.)
 
 
 Phew!  Now you are ready to rock.  I mean dock.  First let's prepare our protein (the "receptor").  Many of the structures available from [PDB](http://www.rcsb.org/) are dimers or oligomers and also may contain solvent molecules and even ligands.  So we need to clean them up and extract a single chain.  (You may actually not want a single chain.  Perhaps you are interested in docking between subunits, for example.  In that case you would need to adapt the strategy below.  Of course, the larger the protein assembly you are working with, the longer some of the downstream steps will take computationally).
@@ -142,7 +142,7 @@ from WriteDMS import writeDMS
 writeDMS(surf, d + root + ".dms")
 ```
 
-The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH.
+The next step is to generate the spheres from the surface to identify docking location.  The `sphgen` application (part of DOCK) requires [a config file](http://dock.compbio.ucsf.edu/DOCK_6/tutorials/sphere_generation/generating_spheres.htm), INSPH, to run in non-interactive mode (this file must be called INSPH, and must be in your current working directory.  There is not option to use a different filename at this time).
 
 **`INSPH`**
 ```
@@ -154,6 +154,9 @@ X
 1.4
 
 ```
+
+Then the spheres can be generated with `sphgen`.  If you want to visualize the spheres, you can convert the sphere file to pdb with the `showsphere` utility that comes with Dock.  Again, to run in non-interactive mode an input file is required:
+
 
 
 
