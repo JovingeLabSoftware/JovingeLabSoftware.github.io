@@ -193,6 +193,7 @@ To generate the boundnig box surrounding our spheres/binding pocket, we use the 
 
 **`box.in`**
 ```
+Y
 5
 ./out/4Z3K_A.sph
 1
