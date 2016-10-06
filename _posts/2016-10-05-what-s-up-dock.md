@@ -135,6 +135,7 @@ else:
 
 writeMol2(models, d + root + "_prepped.mol2")
 
+# ref: http://plato.cgl.ucsf.edu/pipermail/chimera-users/2011-March/006134.html
 chimera.runCommand("surf")
 surf = chimera.openModels.list(modelTypes=[chimera.MSMSModel])[0]
 from WriteDMS import writeDMS
