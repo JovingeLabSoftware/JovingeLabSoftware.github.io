@@ -3,7 +3,7 @@ layout: post
 category: blog
 date: '2017-05-02 09:25 -0400'
 author: JLab Skunkworks
-published: false
+published: true
 title: 'For openstack, image is everything'
 tags:
   - shell
@@ -34,4 +34,3 @@ file xenial-server-cloudimg-amd64-disk1.img
 2. Create via the dashboard.  Just navigate to Compute-->Images and click "Create Image" and follow the prompts.  Note that you must provide a direct link to the disk image--if the link you have redirects, this will fail.  Also you must know the format for the disk image (likely QCOW2 for Ubuntu cloud images, and AMI for Amazon Images?).
 
 Obviously the dashboard method is easier. The only drawback is that if something goes wrong you may not know why, or even realize something went wrong.  The command line gives more informative feedback.
-
