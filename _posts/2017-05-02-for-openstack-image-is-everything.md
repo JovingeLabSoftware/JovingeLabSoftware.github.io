@@ -13,7 +13,9 @@ tags:
 
 Is your favorite flavor of Linux not available on your openstack deployment?  No problem.  You can use AWS style AMIs as well as disk images with Openstack.  There are a couple of methods:
 
-1. Download an iso and create an image.  This option assumes you have setup the openstack environment within your shell session.  Doing that is simple...just login to the openstack dashboard, navigate to Compute-->Access & Security-->Api Access.  There is a button there to download a shell script (OpenStack RC File) that you then source within your current session.  This sets the necessary enviornment variables to use the OpenStack command line tools.  Assuming you have saved this file as `~/.openstackrc` you can proceed as follows:
+**Download an iso and create an image.**  
+
+This option assumes you have setup the openstack environment within your shell session.  Doing that is simple...just login to the openstack dashboard, navigate to Compute-->Access & Security-->Api Access.  There is a button there to download a shell script (OpenStack RC File) that you then source within your current session.  This sets the necessary enviornment variables to use the OpenStack command line tools.  Assuming you have saved this file as `~/.openstackrc` you can proceed as follows:
 
 ```
 cd ~/
@@ -31,6 +33,8 @@ file xenial-server-cloudimg-amd64-disk1.img
 > build/xenial-server-cloudimg-amd64-disk1.img: QEMU QCOW Image (v2), 2361393152 bytes
 ```
 
-2. Create via the dashboard.  Just navigate to Compute-->Images and click "Create Image" and follow the prompts.  Note that you must provide a direct link to the disk image--if the link you have redirects, this will fail.  Also you must know the format for the disk image (likely QCOW2 for Ubuntu cloud images, and AMI for Amazon Images?).
+**Create via the dashboard.**  
+
+Just navigate to Compute-->Images and click "Create Image" and follow the prompts.  Note that you must provide a direct link to the disk image--if the link you have redirects, this will fail.  Also you must know the format for the disk image (likely QCOW2 for Ubuntu cloud images, and AMI for Amazon Images?).
 
 Obviously the dashboard method is easier. The only drawback is that if something goes wrong you may not know why, or even realize something went wrong.  The command line gives more informative feedback.
