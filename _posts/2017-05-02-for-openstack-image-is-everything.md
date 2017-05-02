@@ -20,9 +20,9 @@ This option assumes you have setup the openstack environment within your shell s
 ```
 cd ~/
 . .openstackrc
-wget https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+wget http://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img
 openstack image create --disk-format qcow2 \
---file xenial-server-cloudimg-amd64-disk1.img ubuntu_xenial
+--file trusty-server-cloudimg-amd64-disk1.img
  
 ```
 
