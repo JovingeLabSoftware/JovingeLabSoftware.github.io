@@ -48,3 +48,42 @@ Then we need to configure GitLab to use our top level NGINX proxy server (so we 
 external_url 'http://10.152.222.18/gitlab'
 nginx['enable'] = false
 ```
+
+Then, from the command line:
+
+```
+nginx-ctl reconfigure
+nginx-ctl restart
+
+```
+
+Then we need to add the rstudio endpoint to our top level nginx.  Add this to /etc/nginx/sites-available/default:
+
+```
+server {
+ # a bunch of stuff will already be there, then add this:
+ location /rstudio/ {
+	rewrite ^/rstudio/(.*)$ /$1 break;
+ 	proxy_pass http://localhost:8787;
+ 	proxy_redirect http://localhost:8787/ $scheme://$host/rstudio/;
+ 	proxy_http_version 1.1;
+ 	proxy_set_header Upgrade $http_upgrade;
+ 	proxy_set_header Connection $connection_upgrade;
+ 	proxy_read_timeout 20d;
+ }
+ 
+} # <-- this closing bracket will already be there
+```
+Similarly, add this within the http directive in /etc/nginx/nginx.conf:
+
+```
+http {
+ # a bunch of stuff is already there, then add this
+
+ map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+    }
+    
+} # <-- this closing bracket will already be there
+```
