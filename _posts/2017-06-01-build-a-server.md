@@ -47,7 +47,7 @@ Then we need to configure GitLab to use our top level NGINX proxy server (so we 
 ```
 external_url 'http://10.152.222.18/gitlab'
 nginx['listen_port'] = 8081
-
+```
 Then, from the command line:
 
 ```
