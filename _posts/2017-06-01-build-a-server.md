@@ -8,24 +8,43 @@ title: Build A Server
 ---
 ## A server from scratch
 
-Periodically, the desire arises to setup a fresh server.  The snippets below are the installations we use on top of a base Ubuntu install to create a full stack server focused on bioinformatics:
+Periodically, the desire arises to setup a fresh server.  The snippets below are the installations we use on top of a base Ubuntu install to create a full stack server focused on bioinformatics.  This could be rolled into a post-deployment script for OpenStack, EC2, etc.
 
 ```
 sudo -s
+
 # Latest R from CRAN
 echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 gpg -a --export E084DAB9 | sudo apt-key add -
 apt-get update
-apt-get install r-base r-base-dev
+apt-get install -y r-base r-base-dev
+
+# R studio
+apt-get install gdebi-core
+wget https://download2.rstudio.org/rstudio-server-1.0.143-amd64.deb
+gdebi rstudio-server-1.0.143-amd64.deb
 
 # nginx
-apt-get install nginx
+apt-get install -y nginx
 
 #texlive
-apt-get install texlive texlive-latex-extra
+apt-get install -y texlive texlive-latex-extra
 
 # GitLab
-apt-get install curl openssh-server ca-certificates postfix
+debconf-set-selections <<< "postfix postfix/mailname string your.hostname.com"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+apt-get install -y postfixapt-get install curl openssh-server ca-certificates postfix 
 
+# shell script based install...not for the faint of heart.  But this is a fresh server so ok.
+curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+apt-get install -y gitlab-ce
+gitlab-ctl reconfigure
+```
+
+Then we need to configure GitLab to use our top level NGINX proxy server (so we can run other apps too, like RStudio Server).  Based on yokodev's answer to SO question 24090624, edit two lines of /etc/gitlab/gitlab.rb:
+
+```
+external_url 'http://10.152.222.18/gitlab'
+nginx['enable'] = false
 ```
