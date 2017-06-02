@@ -5,6 +5,12 @@ date: '2017-06-01 15:41 -0400'
 author: JLab Skunkworks
 published: false
 title: Build A Server
+tags:
+  - code snippet
+  - R
+  - shell
+  - nginx
+  - gitlab
 ---
 ## A server from scratch
 
@@ -45,7 +51,7 @@ gitlab-ctl reconfigure
 Then we need to configure GitLab to use our top level NGINX proxy server (so we can run other apps too, like RStudio Server).  Based on yokodev's answer to SO question 24090624, edit two lines of /etc/gitlab/gitlab.rb:
 
 ```
-external_url 'http://floating.ip.address/gitlab'
+external_url 'http://ip.address/gitlab'
 nginx['listen_port'] = 8081
 ```
 
@@ -73,8 +79,8 @@ server {
  }
 
  location /gitlab/ {
-    proxy_pass http://10.152.222.18:8081/gitlab/;
-    proxy_redirect http://10.152.222.18:8081/gitlab/ $scheme://$host/gitlab/;
+    proxy_pass http://ip.address:8081/gitlab/;
+    proxy_redirect http://ip.address:8081/gitlab/ $scheme://$host/gitlab/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $connection_upgrade;
