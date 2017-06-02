@@ -63,7 +63,7 @@ gitlab-ctl restart
 
 ```
 
-Then we need to add the rstudio and gitlab endpoints to our top level nginx.  Add this to /etc/nginx/sites-available/default:
+Then we need to add the rstudio and gitlab endpoints to our top level nginx. Note that unlike rstudio, you need to explicitly specify the external ip address in the gitlab section or otherwise gitlab gets confused trying to build the links.  Add this to /etc/nginx/sites-available/default:
 
 ```
 server {
