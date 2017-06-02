@@ -45,7 +45,7 @@ gitlab-ctl reconfigure
 Then we need to configure GitLab to use our top level NGINX proxy server (so we can run other apps too, like RStudio Server).  Based on yokodev's answer to SO question 24090624, edit two lines of /etc/gitlab/gitlab.rb:
 
 ```
-external_url 'http://10.152.222.18/gitlab'
+external_url 'http://floating.ip.address/gitlab'
 nginx['listen_port'] = 8081
 ```
 
@@ -57,19 +57,27 @@ gitlab-ctl restart
 
 ```
 
-Then we need to add the rstudio endpoint to our top level nginx.  Add this to /etc/nginx/sites-available/default:
+Then we need to add the rstudio and gitlab endpoints to our top level nginx.  Add this to /etc/nginx/sites-available/default:
 
 ```
 server {
  # a bunch of stuff will already be there, then add this:
  location /rstudio/ {
 	rewrite ^/rstudio/(.*)$ /$1 break;
- 	proxy_pass http://localhost:8787;
  	proxy_redirect http://localhost:8787/ $scheme://$host/rstudio/;
  	proxy_http_version 1.1;
  	proxy_set_header Upgrade $http_upgrade;
  	proxy_set_header Connection $connection_upgrade;
  	proxy_read_timeout 20d;
+ }
+
+ location /gitlab/ {
+    proxy_pass http://10.152.222.18:8081/gitlab/;
+    proxy_redirect http://10.152.222.18:8081/gitlab/ $scheme://$host/gitlab/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_read_timeout 20d;
  }
  
 } # <-- this closing bracket will already be there
