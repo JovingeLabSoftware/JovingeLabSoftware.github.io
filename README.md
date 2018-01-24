@@ -2,7 +2,11 @@
 
 Disruptions along a pathway paved with Big Data.
 
-Presently using the slim jekyll theme. [Demo](http://syaning.com/slim).  I slightly edited main.css because default code font size was, IMHO, too big.
+Presently using the Dinky theme.
+
+# Note on Jekyl theme installation
+
+In the past we used the slim jekyll theme. [Demo](http://syaning.com/slim).  I slightly edited main.css because default code font size was, IMHO, too big.
 
 ```
 - code { padding: 1px 5px; font-family: "Courier New", Consolas, monopace, FangSong, STFangsong; }
