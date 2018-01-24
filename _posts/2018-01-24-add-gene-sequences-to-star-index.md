@@ -16,19 +16,41 @@ curl -O http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-1.2.0.
 tar -zxvf refdata-cellranger-GRCh38-1.2.0.tar.gz
 ```
 
-I then created a fasta file for each exogenous construct.  I also edited the GTF file to add these features.  Then I re-indexed genome with STAR.  This was performed on our HPC cluster with the following PBS:
+Within that directory, I then prefixed `fasta/genome.fa` with the following entry:
+
+```
+>BARCODE
+taagctgaaggctgagagggagcgaggaatcaccatcgacatctccctatggaagttccagaccaacaggttcacaatcaccataatcgatgccccggggcacagggacttcGCGATAattaagaacatgatcacgggcacctctcaggcagatgttgctctcctggtggtctctgcggctacaggggaatttgaggccGCGATAggtgtgtccagaaatggccaaacaagggaacacgctcttctggcctacaccatgggggtcaagcaactgatcgtctgcgtgGCGATAaacaaaatggatctgacggaccctccctacagccacaagcggtttgatgaagttgtcaggaatgtgatggtctatctgaaaGCGATAaagattgggtacaacccggctaccatccccttcgtgcctgtgtagggctggacgggagagaatatatcttcgcccagtcaaGCGATAaagatgggttggtttaaaggttggaaggtgaaacagggagcgaggaatcaccatcgacatctccctatggaagttccagaccaacaggttcacaatcaccataatcgatgccccggggcacagggacttcACAGAGattaagaacatgatcacgggcacctctcaggcagatgttgctctcctggtggtctctgcggctacaggggaatttgaggccACAGAGggtgtgtccagaaatggccaaacaagggaacacgctcttctggcctacaccatgggggtcaagcaactgatcgtctgcgtgACAGAGaacaaaatggatctgacggaccctccctacagccacaagcggtttgatgaagttgtcaggaatgtgatggtctatctgaaaACAGAGaagattgggtacaacccggctaccatccccttcgtgcctgtgtagggctggacgggagagaatatatcttcgcccagtcaaACAGAGaagatgggttggtttaaaggttggaaggtgaaactaagctgaaggctgagagggagcgaggaatcaccatcgacatctccctatggaagttccagaccaacaggttcacaatcaccataatcgatgccccggggcacagggacttcTGAGACattaagaacatgatcacgggcacctctcaggcagatgttgctctcctggtggtctctgcggctacaggggaatttgaggccTGAGACggtgtgtccagaaatggccaaacaagggaacacgctcttctggcctacaccatgggggtcaagcaactgatcgtctgcgtgTGAGACaacaaaatggatctgacggaccctccctacagccacaagcggtttgatgaagttgtcaggaatgtgatggtctatctgaaaTGAGACaagattgggtacaacccggctaccatccccttcgtgcctgtgtagggctggacgggagagaatatatcttcgcccagtcaaTGAGACaagatgggttggtttaaaggttggaaggtgaaactaagctgaaggctgagagggagcgaggaatcaccatcgacatctccctatggaagttccagaccaacaggttcacaatcaccataatcgatgccccggggcacagggacttcGTACGTattaagaacatgatcacgggcacctctcaggcagatgttgctctcctggtggtctctgcggctacaggggaatttgaggccGTACGTggtgtgtccagaaatggccaaacaagggaacacgctcttctggcctacaccatgggggtcaagcaactgatcgtctgcgtgGTACGTaacaaaatggatctgacggaccctccctacagccacaagcggtttgatgaagttgtcaggaatgtgatggtctatctgaaaGTACGTaagattgggtacaacccggctaccatccccttcgtgcctgtgtagggctggacgggagagaatatatcttcgcccagtcaaGTACGTaagatgggttggtttaaaggttggaaggtgaaactaagctgaaggctgagagggagcgaggaatcaccatcgacatctccctatggaagttccagaccaacaggttcacaatcaccataatcgatgccccggggcacagggacttcACACTCattaagaacatgatcacgggcacctctcaggcagatgttgctctcctggtggtctctgcggctacaggggaatttgaggccACACTCggtgtgtccagaaatggccaaacaagggaacacgctcttctggcctacaccatgggggtcaagcaactgatcgtctgcgtgACACTCaacaaaatggatctgacggaccctccctacagccacaagcggtttgatgaagttgtcaggaatgtgatggtctatctgaaaACACTCaagattgggtacaacccggctaccatccccttcgtgcctgtgtagggctggacgggagagaatatatcttcgcccagtcaaACACTCaagatgggttggtttaaaggttggaaggtgaaac
+
+```
+
+This creates a synthetic "Chromosome" and contains all my exogenous sequences pasted end to end. I then needed to edit the GTF file to add the features.  I added these features to `genes.gtf`. (When editing large files with emacs, I find it useful to turn off autosave: `M-x auto-save-mode`)
+
+```
+BARCODE jovinge exon    1       500     .       +       .       gene_id "ENSG00000000BC1"; gene_version "3"; transcript_id "ENST00000000BC1"; gene_name "BARCODE1"; gene_source "jovinge-lab"; gene_biotype "pseudogene"; havana_gene "OTTHUMG00000000BC1"; havana_gene_version "2";
+BARCODE jovinge exon    501     1000    .       +       .       gene_id "ENSG00000000BC2"; gene_version "3"; transcript_id "ENST00000000BC2"; gene_name "BARCODE2"; gene_source "jovinge-lab"; gene_biotype "pseudogene"; havana_gene "OTTHUMG00000000BC2"; havana_gene_version "2";
+BARCODE jovinge exon    1001    1500    .       +       .       gene_id "ENSG00000000BC3"; gene_version "3"; transcript_id "ENST00000000BC3"; gene_name "BARCODE3"; gene_source "jovinge-lab"; gene_biotype "pseudogene"; havana_gene "OTTHUMG00000000BC3"; havana_gene_version "2";
+BARCODE jovinge exon    1501    2000    .       +       .       gene_id "ENSG00000000BC4"; gene_version "3"; transcript_id "ENST00000000BC4"; gene_name "BARCODE4"; gene_source "jovinge-lab"; gene_biotype "pseudogene"; havana_gene "OTTHUMG00000000BC4"; havana_gene_version "2";
+BARCODE jovinge exon    2001    2500    .       +       .       gene_id "ENSG00000000BC5"; gene_version "3"; transcript_id "ENST00000000BC5"; gene_name "BARCODE5"; gene_source "jovinge-lab"; gene_biotype "pseudogene"; havana_gene "OTTHUMG00000000BC5"; havana_gene_version "2";
+
+```
+I then moved the hg38 directory already present to hg38_orig, and the existing star diretory to star_orig, and rebuilt the indices
+
+```
 
 #PBS -l walltime=12:00:00
 #PBS -l nodes=1:ppn=28
-#PBS -l mem=50gb
+#PBS -l mem=20gb
 #PBS -N STAR_INDEX
 
-cd /projects/primary/jovinge.lab/build
+cd /primary/projects/jovinge/build
 
-STAR   --genomeFastaFiles genome.fa BC1.fa BC2.fa BC3.fa BC4.fa BC5.fa  \
-       --runMode genomeGenerate \
-       --genomeDir ./  \
-       --sjdbGTFfile genes.gtf \
-       --sjdbOverhang 100  \
-       --runThreadN 28  
+/primary/projects/jovinge/local/share/cellranger/cellranger mkref \
+   --genome=hg38
+   --fasta=fasta/hg38.fa 
+   --genes=genes/genes.gtf
+   --nthreads=28
+   --localmem=50
+   --mem=50
 
+```
