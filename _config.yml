@@ -83,3 +83,5 @@ prose:
           element: "text"
           label: "Permalink"
           value: ""
+
+theme: jekyll-theme-dinky
